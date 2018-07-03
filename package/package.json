@@ -1,0 +1,26 @@
+{
+  "name": "@notadd/addon-mailer",
+  "version": "2.4.2",
+  "description": "Package mailer for Notadd.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notadd/ts-addon-mailer.git"
+  },
+  "keywords": [
+    "Notadd",
+    "Storage",
+    "Browser"
+  ],
+  "author": "notadd",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "email-templates": "^4.0.1",
+    "nodemailer": "^4.6.4"
+  },
+  "bugs": {
+    "url": "https://github.com/notadd/ts-addon-mailer/issues"
+  },
+  "homepage": "https://github.com/notadd/ts-addon-mailer#readme"
+}
