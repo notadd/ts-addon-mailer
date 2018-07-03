@@ -1,0 +1,25 @@
+type Query{
+    # 发送短信
+    sendEmail( mContent: a, mid: Int!, uid: [Int]!, sender: String!):Data
+}
+
+type Mutation{
+    creatEmailModule(
+        emailModule: EmailModuleInput!,
+    ):Data
+}
+
+type Data{
+    code: Int,
+    message: String
+}
+
+type a {
+    name: "xxx"
+}
+
+input EmailModuleInput {
+    module: String!
+    emailType: Int!
+    emailTheme: String
+}
