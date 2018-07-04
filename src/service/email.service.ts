@@ -6,6 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 import { EmailLogEntity } from "../entity/emailLog.entity";
+import { async } from 'rxjs/internal/scheduler/async';
 
 let code;
 let message;
@@ -56,38 +57,36 @@ export class EmailService {
         html: `${template}`,
       };
       const emailLog: EmailLogEntity | undefined = new EmailLogEntity();
-      // 服务器连接配置
-      createTransport({
-        // 邮箱服务器，这里是阿里云服务器
-        host: emailConfig.hostAddress,
-        port: 465,
-        secureConnection: true,
-        auth: {
-          user: emailConfig.authUser,
-          pass: emailConfig.authPass,
-        },
-      }).sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error.message);
-          code = 400;
-          message = "发送失败，请稍后重试！";
-          emailLog.email = email[i];
-          emailLog.code = code;
-          emailLog.message = error.message;
-          emailLog.emailModuleId = mid;
-          this.emailLogRep.save(emailLog);
-          return {code, message};
-        }
-        console.log("Message sent: " + info.response);
-      });
-      code = 200;
-      message = "发送成功";
-      emailLog.email = email[i];
-      emailLog.code = code;
-      emailLog.message = message;
-      emailLog.emailModuleId = mid;
-      await this.emailLogRep.save(emailLog);
-      return {code, message};
+     try {
+       // 服务器连接配置
+       const a = await createTransport({
+         // 邮箱服务器，这里是阿里云服务器
+         host: emailConfig.hostAddress,
+         port: 465,
+         auth: {
+           user: emailConfig.authUser,
+           pass: emailConfig.authPass,
+         },
+       }).sendMail(mailOptions);
+       code = 200;
+       message = "发送成功";
+       emailLog.code = code;
+       emailLog.message = message;
+       emailLog.emailModuleId = mid;
+       emailLog.email = email[i];
+       await this.emailLogRep.save(emailLog);
+       return {code, message};
+     } catch (error) {
+       code = 500;
+       message = error.message;
+       emailLog.code = code;
+       emailLog.message = message;
+       emailLog.emailModuleId = mid;
+       emailLog.email = email[i];
+       await this.emailLogRep.save(emailLog);
+       console.log(error);
+       return {code, message};
+     }
     }
   }
 
