@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity()
+@Entity("email_module")
 export class EmailModuleEntity {
  @PrimaryGeneratedColumn()
   id: number;
