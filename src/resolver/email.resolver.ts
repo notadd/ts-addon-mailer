@@ -19,7 +19,8 @@ export class EmailResolver {
   @Query("sendEmail")
   async sendEmail(obj, data: {mContent: any, mid: number, email: [string], sender: string, emailConfigId: number}) {
     const {mContent, mid, email, sender, emailConfigId} = data;
-    return this.emailService.sendEmail(mContent, mid, email, sender, emailConfigId);
+    const a = await this.emailService.sendEmail(mContent, mid, email, sender, emailConfigId);
+    return a;
   }
 
   /**
