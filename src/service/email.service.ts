@@ -6,7 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 import { EmailLogEntity } from "../entity/emailLog.entity";
-import { async } from 'rxjs/internal/scheduler/async';
+import { async } from "rxjs/internal/scheduler/async";
 
 let code;
 let message;

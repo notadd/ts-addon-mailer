@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from "@nestjs/common";
 import { EmailService } from "../service/email.service";
 
 @Controller("email")
