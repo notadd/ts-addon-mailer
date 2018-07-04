@@ -15,6 +15,7 @@ const email_component_provider_1 = require("./export/email.component.provider");
 const emailModule_entity_1 = require("./entity/emailModule.entity");
 const emailLog_entity_1 = require("./entity/emailLog.entity");
 const emailConfigure_entity_1 = require("./entity/emailConfigure.entity");
+const cryptor_util_1 = require("./cryptor.util");
 let EmailModule = class EmailModule {
 };
 EmailModule = __decorate([
@@ -27,6 +28,7 @@ EmailModule = __decorate([
             email_resolver_1.EmailResolver,
             email_service_1.EmailService,
             email_component_provider_1.EmailComponentProvider,
+            cryptor_util_1.CryptorUtil,
         ],
         exports: [email_component_provider_1.EmailComponentProvider],
     })

@@ -39,6 +39,11 @@ let EmailResolver = class EmailResolver {
             return this.emailService.createEmailModule(data.emailModule);
         });
     }
+    createEmailConfigure(obj, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.emailService.createEmailConfigure(data.emailConfigure);
+        });
+    }
 };
 __decorate([
     graphql_1.Query("sendEmail"),
@@ -52,6 +57,12 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], EmailResolver.prototype, "createEmailModule", null);
+__decorate([
+    graphql_1.Mutation("createEmailConfigure"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], EmailResolver.prototype, "createEmailConfigure", null);
 EmailResolver = __decorate([
     graphql_1.Resolver(),
     __param(0, common_1.Inject("EmailService")),

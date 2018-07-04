@@ -31,6 +31,11 @@ let EmailComponentProvider = class EmailComponentProvider {
             return this.emailSerice.sendEmail(mContent, mid, email, sender, emailConfigId);
         });
     }
+    createEmailConfigure(emailConfigure) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.emailSerice.createEmailConfigure(emailConfigure);
+        });
+    }
 };
 EmailComponentProvider = __decorate([
     common_1.Injectable(),

@@ -1,5 +1,6 @@
 import { EmailService } from "../service/email.service";
 import { EmailModuleEntity } from "../entity/emailModule.entity";
+import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 export declare class EmailResolver {
     private readonly emailService;
     constructor(emailService: EmailService);
@@ -15,6 +16,12 @@ export declare class EmailResolver {
     }>;
     createEmailModule(obj: any, data: {
         emailModule: EmailModuleEntity;
+    }): Promise<{
+        code: any;
+        message: any;
+    }>;
+    createEmailConfigure(obj: any, data: {
+        emailConfigure: EmailConfigureEntity;
     }): Promise<{
         code: any;
         message: any;

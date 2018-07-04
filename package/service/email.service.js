@@ -28,13 +28,15 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const emailConfigure_entity_1 = require("../entity/emailConfigure.entity");
 const emailLog_entity_1 = require("../entity/emailLog.entity");
+const cryptor_util_1 = require("../cryptor.util");
 let code;
 let message;
 let EmailService = class EmailService {
-    constructor(emailModuleReq, emailConfigRep, emailLogRep) {
+    constructor(emailModuleReq, emailConfigRep, emailLogRep, cryptorUtil) {
         this.emailModuleReq = emailModuleReq;
         this.emailConfigRep = emailConfigRep;
         this.emailLogRep = emailLogRep;
+        this.cryptorUtil = cryptorUtil;
     }
     sendEmail(mContent, mid, email, sender, emailConfigId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -49,6 +51,8 @@ let EmailService = class EmailService {
             if (emailConfig === undefined) {
                 return { code: 400, message: "短信配置文件不存在" };
             }
+            const pass = yield this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+            emailConfig.authPass = pass;
             for (let i = 0; i < email.length; i++) {
                 const str = `${emailModule.module}`;
                 const template = ejs_1.render(str, mContent);
@@ -102,6 +106,24 @@ let EmailService = class EmailService {
             }
         });
     }
+    createEmailConfigure(emailConfigure) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const pass = yield this.cryptorUtil.encryptor(emailConfigure.authUser, emailConfigure.authPass);
+                emailConfigure.authPass = pass;
+                yield this.emailConfigRep.save({
+                    fromAddress: emailConfigure.fromAddress,
+                    hostAddress: emailConfigure.hostAddress,
+                    authUser: emailConfigure.authUser,
+                    authPass: emailConfigure.authPass
+                });
+                return { code: 200, message: "添加成功" };
+            }
+            catch (error) {
+                return { code: 406, message: "添加失败，错误原因：" + error.toString() };
+            }
+        });
+    }
 };
 EmailService = __decorate([
     common_1.Injectable(),
@@ -110,7 +132,8 @@ EmailService = __decorate([
     __param(2, typeorm_1.InjectRepository(emailLog_entity_1.EmailLogEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        cryptor_util_1.CryptorUtil])
 ], EmailService);
 exports.EmailService = EmailService;
 
