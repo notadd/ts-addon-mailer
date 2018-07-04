@@ -59,36 +59,35 @@ let EmailService = class EmailService {
                     html: `${template}`,
                 };
                 const emailLog = new emailLog_entity_1.EmailLogEntity();
-                nodemailer_1.createTransport({
-                    host: emailConfig.hostAddress,
-                    port: 465,
-                    secureConnection: true,
-                    auth: {
-                        user: emailConfig.authUser,
-                        pass: emailConfig.authPass,
-                    },
-                }).sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        console.log(error.message);
-                        code = 400;
-                        message = "发送失败，请稍后重试！";
-                        emailLog.email = email[i];
-                        emailLog.code = code;
-                        emailLog.message = error.message;
-                        emailLog.emailModuleId = mid;
-                        this.emailLogRep.save(emailLog);
-                        return { code, message };
-                    }
-                    console.log("Message sent: " + info.response);
-                });
-                code = 200;
-                message = "发送成功";
-                emailLog.email = email[i];
-                emailLog.code = code;
-                emailLog.message = message;
-                emailLog.emailModuleId = mid;
-                yield this.emailLogRep.save(emailLog);
-                return { code, message };
+                try {
+                    const a = yield nodemailer_1.createTransport({
+                        host: emailConfig.hostAddress,
+                        port: 465,
+                        auth: {
+                            user: emailConfig.authUser,
+                            pass: emailConfig.authPass,
+                        },
+                    }).sendMail(mailOptions);
+                    code = 200;
+                    message = "发送成功";
+                    emailLog.code = code;
+                    emailLog.message = message;
+                    emailLog.emailModuleId = mid;
+                    emailLog.email = email[i];
+                    yield this.emailLogRep.save(emailLog);
+                    return { code, message };
+                }
+                catch (error) {
+                    code = 500;
+                    message = error.message;
+                    emailLog.code = code;
+                    emailLog.message = message;
+                    emailLog.emailModuleId = mid;
+                    emailLog.email = email[i];
+                    yield this.emailLogRep.save(emailLog);
+                    console.log(error);
+                    return { code, message };
+                }
             }
         });
     }

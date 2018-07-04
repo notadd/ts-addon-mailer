@@ -7,6 +7,7 @@ export declare class EmailControllers {
         mid: number;
         email: [string];
         sender: string;
+        emailConfigId: number;
     }): Promise<{
         code: number;
         message: string;

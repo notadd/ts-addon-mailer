@@ -30,7 +30,8 @@ let EmailResolver = class EmailResolver {
     sendEmail(obj, data) {
         return __awaiter(this, void 0, void 0, function* () {
             const { mContent, mid, email, sender, emailConfigId } = data;
-            return this.emailService.sendEmail(mContent, mid, email, sender, emailConfigId);
+            const a = yield this.emailService.sendEmail(mContent, mid, email, sender, emailConfigId);
+            return a;
         });
     }
     createEmailModule(obj, data) {

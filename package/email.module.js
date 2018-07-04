@@ -13,12 +13,14 @@ const email_resolver_1 = require("./resolver/email.resolver");
 const email_service_1 = require("./service/email.service");
 const email_component_provider_1 = require("./export/email.component.provider");
 const emailModule_entity_1 = require("./entity/emailModule.entity");
-let AppModule = class AppModule {
+const emailLog_entity_1 = require("./entity/emailLog.entity");
+const emailConfigure_entity_1 = require("./entity/emailConfigure.entity");
+let EmailModule = class EmailModule {
 };
-AppModule = __decorate([
+EmailModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([emailModule_entity_1.EmailModuleEntity]),
+            typeorm_1.TypeOrmModule.forFeature([emailModule_entity_1.EmailModuleEntity, emailLog_entity_1.EmailLogEntity, emailConfigure_entity_1.EmailConfigureEntity]),
         ],
         controllers: [email_controllers_1.EmailControllers],
         providers: [
@@ -28,7 +30,7 @@ AppModule = __decorate([
         ],
         exports: [email_component_provider_1.EmailComponentProvider],
     })
-], AppModule);
-exports.AppModule = AppModule;
+], EmailModule);
+exports.EmailModule = EmailModule;
 
-//# sourceMappingURL=app.module.js.map
+//# sourceMappingURL=email.module.js.map

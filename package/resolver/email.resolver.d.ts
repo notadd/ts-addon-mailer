@@ -16,7 +16,7 @@ export declare class EmailResolver {
     createEmailModule(obj: any, data: {
         emailModule: EmailModuleEntity;
     }): Promise<{
-        code;
-        message;
+        code: any;
+        message: any;
     }>;
 }

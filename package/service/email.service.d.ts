@@ -8,11 +8,11 @@ export declare class EmailService {
     private readonly emailLogRep;
     constructor(emailModuleReq: Repository<EmailModuleEntity>, emailConfigRep: Repository<EmailConfigureEntity>, emailLogRep: Repository<EmailLogEntity>);
     sendEmail(mContent: any, mid: number, email: [string], sender: string, emailConfigId: number): Promise<{
-        code;
-        message;
+        code: any;
+        message: any;
     }>;
     createEmailModule(emailModule: EmailModuleEntity): Promise<{
-        code;
-        message;
+        code: any;
+        message: any;
     }>;
 }

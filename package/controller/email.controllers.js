@@ -28,8 +28,8 @@ let EmailControllers = class EmailControllers {
     }
     emailMessage(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { mContent, mid, email, sender } = data;
-            return this.emailService.sendEmail(mContent, mid, email, sender);
+            const { mContent, mid, email, sender, emailConfigId } = data;
+            return this.emailService.sendEmail(mContent, mid, email, sender, emailConfigId);
         });
     }
 };
@@ -42,6 +42,7 @@ __decorate([
 ], EmailControllers.prototype, "emailMessage", null);
 EmailControllers = __decorate([
     common_1.Controller("email"),
+    __param(0, common_1.Inject(email_service_1.EmailService)),
     __metadata("design:paramtypes", [email_service_1.EmailService])
 ], EmailControllers);
 exports.EmailControllers = EmailControllers;
