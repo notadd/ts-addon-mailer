@@ -74,6 +74,7 @@ export class EmailService {
           emailLog.email = email[i];
           emailLog.code = code;
           emailLog.message = error.message;
+          emailLog.emailModuleId = mid;
           this.emailLogRep.save(emailLog);
           return {code, message};
         }
@@ -84,6 +85,7 @@ export class EmailService {
       emailLog.email = email[i];
       emailLog.code = code;
       emailLog.message = message;
+      emailLog.emailModuleId = mid;
       await this.emailLogRep.save(emailLog);
       return {code, message};
     }
