@@ -10,27 +10,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let EmailModuleEntity = class EmailModuleEntity {
+let EmailConfigureEntity = class EmailConfigureEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], EmailModuleEntity.prototype, "id", void 0);
+], EmailConfigureEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], EmailModuleEntity.prototype, "emailType", void 0);
-__decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({
+        name: "fromAddress",
+        nullable: true
+    }),
     __metadata("design:type", String)
-], EmailModuleEntity.prototype, "module", void 0);
+], EmailConfigureEntity.prototype, "fromAddress", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({
+        name: "hostAddress",
+        nullable: true
+    }),
     __metadata("design:type", String)
-], EmailModuleEntity.prototype, "emailTheme", void 0);
-EmailModuleEntity = __decorate([
-    typeorm_1.Entity("email_module")
-], EmailModuleEntity);
-exports.EmailModuleEntity = EmailModuleEntity;
+], EmailConfigureEntity.prototype, "hostAddress", void 0);
+__decorate([
+    typeorm_1.Column({
+        name: "authUser",
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], EmailConfigureEntity.prototype, "authUser", void 0);
+__decorate([
+    typeorm_1.Column({
+        name: "authUser",
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], EmailConfigureEntity.prototype, "authPass", void 0);
+EmailConfigureEntity = __decorate([
+    typeorm_1.Entity("email_config")
+], EmailConfigureEntity);
+exports.EmailConfigureEntity = EmailConfigureEntity;
 
-//# sourceMappingURL=emailModule.entity.js.map
+//# sourceMappingURL=emailConfigure.entity.js.map

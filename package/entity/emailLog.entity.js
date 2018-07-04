@@ -10,27 +10,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let EmailModuleEntity = class EmailModuleEntity {
+let EmailLogEntity = class EmailLogEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], EmailModuleEntity.prototype, "id", void 0);
+], EmailLogEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({
+        name: "email",
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], EmailLogEntity.prototype, "email", void 0);
+__decorate([
+    typeorm_1.Column({
+        name: "emailModuleId"
+    }),
     __metadata("design:type", Number)
-], EmailModuleEntity.prototype, "emailType", void 0);
+], EmailLogEntity.prototype, "emailModuleId", void 0);
 __decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], EmailModuleEntity.prototype, "module", void 0);
+    typeorm_1.Column({
+        name: "code"
+    }),
+    __metadata("design:type", Number)
+], EmailLogEntity.prototype, "code", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({
+        name: "message",
+        nullable: true
+    }),
     __metadata("design:type", String)
-], EmailModuleEntity.prototype, "emailTheme", void 0);
-EmailModuleEntity = __decorate([
-    typeorm_1.Entity("email_module")
-], EmailModuleEntity);
-exports.EmailModuleEntity = EmailModuleEntity;
+], EmailLogEntity.prototype, "message", void 0);
+__decorate([
+    typeorm_1.CreateDateColumn(),
+    __metadata("design:type", Date)
+], EmailLogEntity.prototype, "createDate", void 0);
+EmailLogEntity = __decorate([
+    typeorm_1.Entity("email_log")
+], EmailLogEntity);
+exports.EmailLogEntity = EmailLogEntity;
 
-//# sourceMappingURL=emailModule.entity.js.map
+//# sourceMappingURL=emailLog.entity.js.map

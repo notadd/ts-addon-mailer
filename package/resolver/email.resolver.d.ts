@@ -8,6 +8,7 @@ export declare class EmailResolver {
         mid: number;
         email: [string];
         sender: string;
+        emailConfigId: number;
     }): Promise<{
         code: any;
         message: any;

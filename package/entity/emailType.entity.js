@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", String)
 ], EmailTypeEntity.prototype, "moduleTypeName", void 0);
 EmailTypeEntity = __decorate([
-    typeorm_1.Entity()
+    typeorm_1.Entity("email_type")
 ], EmailTypeEntity);
 exports.EmailTypeEntity = EmailTypeEntity;
 

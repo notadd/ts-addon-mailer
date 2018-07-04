@@ -26,11 +26,17 @@ const ejs_1 = require("ejs");
 const nodemailer_1 = require("nodemailer");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const emailConfigure_entity_1 = require("../entity/emailConfigure.entity");
+const emailLog_entity_1 = require("../entity/emailLog.entity");
+let code;
+let message;
 let EmailService = class EmailService {
-    constructor(emailModuleReq) {
+    constructor(emailModuleReq, emailConfigRep, emailLogRep) {
         this.emailModuleReq = emailModuleReq;
+        this.emailConfigRep = emailConfigRep;
+        this.emailLogRep = emailLogRep;
     }
-    sendEmail(mContent, mid, email, sender) {
+    sendEmail(mContent, mid, email, sender, emailConfigId) {
         return __awaiter(this, void 0, void 0, function* () {
             const emailModule = yield this.emailModuleReq.findOne(mid);
             if (!emailModule) {
@@ -39,31 +45,50 @@ let EmailService = class EmailService {
             if (email.length <= 0) {
                 throw new common_1.HttpException("收件人不存在", 406);
             }
+            const emailConfig = yield this.emailConfigRep.findOne(emailConfigId);
+            if (emailConfig === undefined) {
+                return { code: 400, message: "短信配置文件不存在" };
+            }
             for (let i = 0; i < email.length; i++) {
                 const str = `${emailModule.module}`;
                 const template = ejs_1.render(str, mContent);
                 const mailOptions = {
-                    from: `${sender}<ibenchu-demo@yzlei.ibenchu.pw>`,
+                    from: `${sender}` + `${emailConfig.fromAddress}`,
                     to: email[i],
                     subject: `${emailModule.emailTheme}`,
                     html: `${template}`,
                 };
+                const emailLog = new emailLog_entity_1.EmailLogEntity();
                 nodemailer_1.createTransport({
-                    host: "smtpdm.aliyun.com",
+                    host: emailConfig.hostAddress,
                     port: 465,
                     secureConnection: true,
                     auth: {
-                        user: "ibenchu-demo@yzlei.ibenchu.pw",
-                        pass: "ibenchu123QWE",
+                        user: emailConfig.authUser,
+                        pass: emailConfig.authPass,
                     },
                 }).sendMail(mailOptions, (error, info) => {
                     if (error) {
-                        console.log(error);
-                        return { code: 200, message: "发送失败，请稍后重试！" };
+                        console.log(error.message);
+                        code = 400;
+                        message = "发送失败，请稍后重试！";
+                        emailLog.email = email[i];
+                        emailLog.code = code;
+                        emailLog.message = error.message;
+                        emailLog.emailModuleId = mid;
+                        this.emailLogRep.save(emailLog);
+                        return { code, message };
                     }
                     console.log("Message sent: " + info.response);
                 });
-                return { code: 200, message: "发送成功" };
+                code = 200;
+                message = "发送成功";
+                emailLog.email = email[i];
+                emailLog.code = code;
+                emailLog.message = message;
+                emailLog.emailModuleId = mid;
+                yield this.emailLogRep.save(emailLog);
+                return { code, message };
             }
         });
     }
@@ -82,7 +107,11 @@ let EmailService = class EmailService {
 EmailService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(emailModule_entity_1.EmailModuleEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, typeorm_1.InjectRepository(emailConfigure_entity_1.EmailConfigureEntity)),
+    __param(2, typeorm_1.InjectRepository(emailLog_entity_1.EmailLogEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], EmailService);
 exports.EmailService = EmailService;
 
