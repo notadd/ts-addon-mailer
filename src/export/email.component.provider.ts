@@ -10,10 +10,12 @@ export class EmailComponentProvider {
    ) {}
 
   /**
-   * 发送邮箱
-   * @param {number} mid 模板Id
-   * @param {[number]} uid 用户Id
-   * @param {string} sender 邮件主题
+   * 发送邮件
+   * @param mContent 替换模板对象
+   * @param {number} mid 模板id
+   * @param {[string]} email 邮箱账号
+   * @param {string} sender 发送人名称
+   * @param {number} emailConfigId 邮箱配置Id
    * @returns {Promise<{code; message}>}
    */
    async sendEmail(mContent: any, mid: number, email: [string], sender: string, emailConfigId: number) {
