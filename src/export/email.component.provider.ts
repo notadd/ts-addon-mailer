@@ -1,5 +1,6 @@
 import { EmailService } from "../service/email.service";
 import { Inject, Injectable } from "@nestjs/common";
+import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 
 @Injectable()
 export class EmailComponentProvider {
@@ -17,5 +18,14 @@ export class EmailComponentProvider {
    */
    async sendEmail(mContent: any, mid: number, email: [string], sender: string, emailConfigId: number) {
      return this.emailSerice.sendEmail(mContent, mid, email, sender, emailConfigId);
+   }
+
+  /**
+   * 添加邮箱配置信息
+   * @param {EmailConfigureEntity} emailConfigure
+   * @returns {Promise<{code; message}>}
+   */
+   async createEmailConfigure(emailConfigure: EmailConfigureEntity) {
+     return this.emailSerice.createEmailConfigure(emailConfigure);
    }
 }
