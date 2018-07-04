@@ -28,9 +28,9 @@ export class EmailConfigureEntity {
   })
   authUser: string;
 
-  // Authm密码
+  // Auth密码
   @Column({
-    name: "authUser",
+    name: "authPass",
     nullable: true
   })
   authPass: string;
