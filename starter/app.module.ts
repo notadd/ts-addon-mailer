@@ -3,7 +3,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import { GraphQLFactory, GraphQLModule } from "@nestjs/graphql";
 import { EmailModule } from "../src/email.module";
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
