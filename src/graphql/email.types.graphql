@@ -1,10 +1,10 @@
 type Query{
     # 发送短信
-    sendEmail( mContent: a, mid: Int!, uid: [Int]!, sender: String!):Data
+    sendEmail( mContent: a, mid: Int!, email: [String]!, sender: String!): Data
 }
 
 type Mutation{
-    creatEmailModule(
+    createEmailModule(
         emailModule: EmailModuleInput!,
     ):Data
 }
@@ -14,10 +14,9 @@ type Data{
     message: String
 }
 
-type a {
-    name: "xxx"
+input a {
+    name: String
 }
-
 input EmailModuleInput {
     module: String!
     emailType: Int!
