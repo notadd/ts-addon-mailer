@@ -5,9 +5,9 @@
 ### 3.Mailbox log
 ## Installation
 ```bash
-yarn add @notadd/addon-email
+yarn add @notadd/addon-mailer
 ```
 ## Use
 ```bash
-import { EmailModule } from " @notadd/addon-email";
+import { EmailModule } from " @notadd/addon-mailer";
 ```

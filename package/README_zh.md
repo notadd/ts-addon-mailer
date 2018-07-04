@@ -5,10 +5,10 @@
 ### 3.邮箱日志
 ## 安装
 ```bash
-yarn add @notadd/addon-email
+yarn add @notadd/addon-mailer
 ```
 ## 使用
 ```bash
-import { EmailModule } from " @notadd/addon-email";
+import { EmailModule } from "@notadd/addon-mailer";
 ```
 
