@@ -12,11 +12,17 @@ export class EmailLogEntity {
   })
   email: string;
 
+  // 模板Id
+  @Column({
+    name: "emailModuleId"
+  })
+  emailModuleId: number;
+
   // 状态码
   @Column({
     name: "code"
   })
-  code: string;
+  code: number;
 
   // 状态消息
   @Column({
