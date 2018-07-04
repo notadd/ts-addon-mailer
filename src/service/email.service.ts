@@ -6,7 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 import { EmailLogEntity } from "../entity/emailLog.entity";
-import { async } from "rxjs/internal/scheduler/async";
+import { CryptorUtil } from "../cryptor.util";
 
 let code;
 let message;
@@ -19,6 +19,7 @@ export class EmailService {
    private readonly emailConfigRep: Repository<EmailConfigureEntity>,
    @InjectRepository(EmailLogEntity)
    private readonly emailLogRep: Repository<EmailLogEntity>,
+   private readonly cryptorUtil: CryptorUtil,
  ) {}
 
   /**
@@ -41,6 +42,8 @@ export class EmailService {
     if (emailConfig === undefined) {
       return {code: 400, message: "短信配置文件不存在"};
     }
+    const pass = await this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+    emailConfig.authPass = pass;
     // 可参考 https://help.aliyun.com/document_detail/29456.html?spm=a2c4g.11186623.6.606.uvABcP
     for (let i = 0; i < email.length; i++) {
       const str = `${emailModule.module}`;
@@ -98,6 +101,27 @@ export class EmailService {
   async createEmailModule(emailModule: EmailModuleEntity): Promise<{code, message }> {
     try {
       await this.emailModuleReq.save(emailModule);
+      return {code: 200, message: "添加成功"};
+    } catch (error) {
+      return {code: 406, message: "添加失败，错误原因：" + error.toString()};
+    }
+  }
+
+  /**
+   * 添加邮箱配置
+   * @param {EmailConfigureEntity} emailConfigure
+   * @returns {Promise<{code; message}>}
+   */
+  async createEmailConfigure(emailConfigure: EmailConfigureEntity): Promise<{code, message }> {
+    try {
+      const pass = await this.cryptorUtil.encryptor(emailConfigure.authUser, emailConfigure.authPass);
+      emailConfigure.authPass = pass;
+      await this.emailConfigRep.save({
+        fromAddress: emailConfigure.fromAddress,
+        hostAddress: emailConfigure.hostAddress,
+        authUser: emailConfigure.authUser,
+        authPass: emailConfigure.authPass
+      });
       return {code: 200, message: "添加成功"};
     } catch (error) {
       return {code: 406, message: "添加失败，错误原因：" + error.toString()};
