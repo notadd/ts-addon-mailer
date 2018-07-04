@@ -83,3 +83,4 @@ function watchTypescript(source, module) {
     console.log("File " + event.path + " was " + event.type + ", running tasks...");
   });
 }
+
