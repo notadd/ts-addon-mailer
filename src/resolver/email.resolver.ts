@@ -2,6 +2,7 @@ import { Mutation, Query, Resolver } from "@nestjs/graphql";
 import { EmailService } from "../service/email.service";
 import { Inject } from "@nestjs/common";
 import { EmailModuleEntity } from "../entity/emailModule.entity";
+import { EmailConfigureEntity } from "../entity/emailConfigure.entity";
 
 @Resolver()
 export class EmailResolver {
@@ -32,5 +33,15 @@ export class EmailResolver {
   @Mutation("createEmailModule")
   async createEmailModule(obj, data: {emailModule: EmailModuleEntity}): Promise<{code, message }> {
     return this.emailService.createEmailModule(data.emailModule);
+  }
+
+  /**
+   * 添加邮箱配置信息
+   * @param {EmailConfigureEntity} emailConfigure
+   * @returns {Promise<{code; message}>}
+   */
+  @Mutation("createEmailConfigure")
+  async createEmailConfigure(obj, data: {emailConfigure: EmailConfigureEntity}) {
+    return this.emailService.createEmailConfigure(data.emailConfigure);
   }
 }
