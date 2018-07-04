@@ -7,6 +7,7 @@ import { EmailComponentProvider } from "./export/email.component.provider";
 import { EmailModuleEntity } from "./entity/emailModule.entity";
 import { EmailLogEntity } from "./entity/emailLog.entity";
 import { EmailConfigureEntity } from "./entity/emailConfigure.entity";
+import { CryptorUtil } from './cryptor.util';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { EmailConfigureEntity } from "./entity/emailConfigure.entity";
     EmailResolver,
     EmailService,
     EmailComponentProvider,
+    CryptorUtil,
   ],
   exports: [EmailComponentProvider],
 })
