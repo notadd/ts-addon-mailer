@@ -1,12 +1,13 @@
 type Query{
-    # 发送短信
-    sendEmail( mContent: a, mid: Int!, email: [String]!, sender: String!): Data
+    # 发送邮箱
+    sendEmail( mContent: a, mid: Int!, email: [String]!, sender: String!, emailConfigId: Int!): Data
 }
 
 type Mutation{
     createEmailModule(
-        emailModule: EmailModuleInput!,
+        emailModule: EmailModuleInput!
     ):Data
+    createEmailConfigure(emailConfigure: EmailConfigureInput!): Data
 }
 
 type Data{
@@ -21,4 +22,15 @@ input EmailModuleInput {
     module: String!
     emailType: Int!
     emailTheme: String
+}
+
+input EmailConfigureInput {
+
+   fromAddress: String,
+
+   hostAddress: String,
+
+   authUser: String,
+
+   authPass: String,
 }
