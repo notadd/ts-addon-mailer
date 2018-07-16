@@ -46,7 +46,7 @@ export class EmailService {
     try {
       pass = await this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
     } catch (error) {
-      return {code: 404, message: "密码不存在！，错误信息:" + error.toString()};
+      return {code: 404, message: "密码解密失败！，错误信息:" + error.toString()};
     }
     emailConfig.authPass = pass;
     // 可参考 https://help.aliyun.com/document_detail/29456.html?spm=a2c4g.11186623.6.606.uvABcP
