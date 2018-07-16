@@ -1,6 +1,6 @@
 {
   "name": "@notadd/addon-mailer",
-  "version": "2.0.2",
+  "version": "2.0.6",
   "description": "Package mailer for Notadd.",
   "main": "index.js",
   "repository": {
