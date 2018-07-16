@@ -42,7 +42,12 @@ export class EmailService {
     if (emailConfig === undefined) {
       return {code: 400, message: "短信配置文件不存在"};
     }
-    const pass = await this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+    let pass;
+    try {
+      pass = await this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+    } catch (error) {
+      return {code: 404, message: "密码不存在！，错误信息:" + error.toString()};
+    }
     emailConfig.authPass = pass;
     // 可参考 https://help.aliyun.com/document_detail/29456.html?spm=a2c4g.11186623.6.606.uvABcP
     for (let i = 0; i < email.length; i++) {
