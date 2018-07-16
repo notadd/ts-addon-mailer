@@ -51,7 +51,13 @@ let EmailService = class EmailService {
             if (emailConfig === undefined) {
                 return { code: 400, message: "短信配置文件不存在" };
             }
-            const pass = yield this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+            let pass;
+            try {
+                pass = yield this.cryptorUtil.decryptor(emailConfig.authUser, emailConfig.authPass);
+            }
+            catch (error) {
+                return { code: 404, message: "密码解密失败！，错误信息:" + error.toString() };
+            }
             emailConfig.authPass = pass;
             for (let i = 0; i < email.length; i++) {
                 const str = `${emailModule.module}`;
