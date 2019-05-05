@@ -34,7 +34,7 @@
     "pug": "^2.0.3",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.1",
-    "typeorm": "^0.2.2",
+    "typeorm": "^0.2.15",
     "typescript": "^2.6.2"
   },
   "devDependencies": {
