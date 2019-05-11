@@ -41,7 +41,7 @@
     "snyk": "1.163.3"
   },
   "devDependencies": {
-    "@types/express": "4.16.0",
+    "@types/express": "4.16.1",
     "@notadd/gulp-typescript": "4.0.2",
     "@types/chance": "1.0.1",
     "@types/graphql": "0.13.2",
