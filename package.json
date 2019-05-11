@@ -49,7 +49,7 @@
     "@types/request": "2.47.1",
     "gulp": "3.9.1",
     "gulp-clang-format": "1.0.25",
-    "gulp-nodemon": "2.2.1",
+    "gulp-nodemon": "2.4.2",
     "gulp-rename": "1.3.0",
     "gulp-sequence": "0.4.6",
     "gulp-sourcemaps": "2.6.4",
