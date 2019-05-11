@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "ejs": "^2.5.9",
-    "email-templates": "^4.0.1",
+    "email-templates": "^5.0.0",
     "nodemailer": "^4.6.4"
   },
   "bugs": {
