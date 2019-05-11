@@ -46,7 +46,7 @@
     "@types/chance": "1.0.1",
     "@types/graphql": "0.13.2",
     "@types/node": "10.5.1",
-    "@types/request": "2.47.1",
+    "@types/request": "2.48.1",
     "gulp": "3.9.1",
     "gulp-clang-format": "1.0.25",
     "gulp-nodemon": "2.2.1",
