@@ -21,7 +21,7 @@
     "@nestjs/core": "6.2.0",
     "@nestjs/microservices": "6.2.0",
     "@nestjs/testing": "6.2.0",
-    "@nestjs/typeorm": "6.1.0",
+    "@nestjs/typeorm": "6.1.1",
     "@nestjs/websockets": "6.2.0",
     "@types/ejs": "2.6.3",
     "@types/nodemailer": "4.6.2",
