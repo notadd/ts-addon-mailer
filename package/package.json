@@ -20,7 +20,7 @@
   "dependencies": {
     "ejs": "^2.5.9",
     "email-templates": "^4.0.1",
-    "nodemailer": "^4.6.4"
+    "nodemailer": "^6.0.0"
   },
   "bugs": {
     "url": "https://github.com/notadd/ts-addon-mailer/issues"
