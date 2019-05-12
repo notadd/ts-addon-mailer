@@ -51,7 +51,7 @@
     "gulp-clang-format": "1.0.27",
     "gulp-nodemon": "2.2.1",
     "gulp-rename": "1.4.0",
-    "gulp-sequence": "0.4.6",
+    "gulp-sequence": "1.0.0",
     "gulp-tslint": "8.1.4",
     "gulp-sourcemaps": "2.6.5",
     "gulp-watch": "4.3.11",
