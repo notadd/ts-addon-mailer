@@ -31,7 +31,7 @@
     "graphql": "14.3.0",
     "graphql-type-json": "0.3.0",
     "graphql-tools": "4.0.4",
-    "nodemailer": "4.6.7",
+    "nodemailer": "6.1.1",
     "pg": "7.11.0",
     "pug": "2.0.3",
     "reflect-metadata": "0.1.13",
