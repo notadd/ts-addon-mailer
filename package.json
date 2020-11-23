@@ -27,7 +27,7 @@
     "@types/nodemailer": "6.1.0",
     "apollo-server-express": "2.5.0",
     "ejs": "2.6.1",
-    "email-templates": "4.0.4",
+    "email-templates": "8.0.0",
     "graphql": "14.3.0",
     "graphql-type-json": "0.3.0",
     "graphql-tools": "4.0.4",
