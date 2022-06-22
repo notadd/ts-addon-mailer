@@ -25,7 +25,7 @@
     "@nestjs/websockets": "6.2.2",
     "@types/ejs": "2.6.3",
     "@types/nodemailer": "6.1.0",
-    "apollo-server-express": "2.5.0",
+    "apollo-server-express": "3.0.0",
     "ejs": "2.6.1",
     "email-templates": "4.0.4",
     "graphql": "14.3.0",
