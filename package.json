@@ -38,7 +38,7 @@
     "rxjs": "6.5.2",
     "typeorm": "0.2.27",
     "typescript": "3.4.5",
-    "snyk": "^1.258.2"
+    "snyk": "^1.685.0"
   },
   "devDependencies": {
     "@types/express": "4.16.1",
