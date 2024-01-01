@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@nestjs/graphql": "6.2.1",
-    "@nestjs/common": "6.2.2",
+    "@nestjs/common": "7.6.5",
     "@nestjs/core": "6.2.2",
     "@nestjs/microservices": "6.2.2",
     "@nestjs/testing": "6.2.2",
